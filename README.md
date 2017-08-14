@@ -15,7 +15,7 @@ This implementation uses Java 1.8 and some third party libraries as follows:
 * JUnit and Mockito for unit testing
 * JDK Logger for logging
 
-In a production ready implementation I would use a framework like Spring as it provides dependency injection, Rest Templates, built JSON to Java mapping etc.
+In a production ready implementation I would use a framework like Spring as it provides dependency injection, Rest Templates, built in JSON to Java mapping etc.
 
 
 ### Code overview
