@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.momenton.agltest.model.Person;
 import com.momenton.agltest.model.Pet;
 
-import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -22,19 +21,23 @@ public class PersonService {
      * In a Spring based application this field would be injectd e.g. through @Autowire
      */
     private HttpClient httpClient;
+    private ObjectMapper mapper;
+
     private String url;
 
 
     public PersonService(HttpClient httpClient, String url) {
         this.httpClient = httpClient;
         this.url = url;
+        mapper = new ObjectMapper();
     }
 
 
     /**
+     * Returns alphabetically sorted list of pets against their owner gender.
      *
-     * @param petType
-     * @return
+     * @param petType - e.g. "Cat", "Dog"
+     * @return Map with owner gender as key and list of pets as value.
      */
     public Map<String, List<Pet>> getPets(String petType) {
         List<Person> people = getPeople();
@@ -56,7 +59,7 @@ public class PersonService {
             result = people.stream()
                     .filter(p -> p.getPets() != null)
                     .collect(Collectors.groupingBy(Person::getGender,
-                            Collectors.mapping(p -> p.getPets().parallelStream()
+                            Collectors.mapping(p -> p.getPets().stream()
                                     .filter(pet -> pet.getType().equals(petType))
                                     .collect(Collectors.toList()), Collectors.toList())))
                     .entrySet().stream()
@@ -78,10 +81,10 @@ public class PersonService {
         try {
             String response = httpClient.get(new URL(url));
             if (response != null) {
-                ObjectMapper mapper = new ObjectMapper();
                 people = Arrays.asList(mapper.readValue(response, Person[].class));
             }
         } catch (Exception e) {
+            // In a real application error handling would be done
             logger.log(Level.SEVERE, "Error in service call to " + url, e);
         }
         return people;
@@ -98,7 +101,7 @@ public class PersonService {
         if(map != null) {
             map.entrySet().stream().forEach(entry -> {
                 result.append(entry.getKey()).append("\n");
-                entry.getValue().stream().forEach(p -> result.append("\t").append(p.getName()).append("\n"));
+                entry.getValue().stream().forEach(p -> result.append("   ").append(p.getName()).append("\n"));
             });
         }
         return result.toString();

@@ -1,8 +1,6 @@
-package com.momenton.agltest;
+package com.momenton.agltest.service;
 
 import com.momenton.agltest.model.Pet;
-import com.momenton.agltest.service.HttpClient;
-import com.momenton.agltest.service.PersonService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,6 +9,10 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
+/**
+ * Integration tests for PersonService are executed against the real web service.
+ * For PersonService unit tests refer to {{@link com.momenton.agltest.service.PersonServiceUnitTest}}
+ */
 public class PersonServiceIntegrationTest {
 
     private static final String SERVICE_URL = "http://agl-developer-test.azurewebsites.net/people.json";
@@ -24,7 +26,7 @@ public class PersonServiceIntegrationTest {
     }
 
     @Test
-    public void testGetPets() throws Exception {
+    public void testGetPets_Success() throws Exception {
         Map<String, List<Pet>> pets = service.getPets("Cat");
         assertNotNull(pets);
         assertTrue(pets.size() == 2);
@@ -37,11 +39,17 @@ public class PersonServiceIntegrationTest {
         checkListOrder(femaleOwnerPets);
     }
 
+    @Test
+    public void testGetPets_InvalidUrl() throws Exception {
+        service = new PersonService(new HttpClient(), "http://invalid.host/invalidpath.json");
+        Map<String, List<Pet>> pets = service.getPets("Cat");
+        assertNull(pets);
+    }
+
     private void checkListOrder(List<Pet> pets) {
         for(int i = 0; i < pets.size() - 1; i++) {
             assertTrue(pets.get(i).getName().compareTo(pets.get(i+1).getName()) < 0);
         }
-
     }
 
 }
