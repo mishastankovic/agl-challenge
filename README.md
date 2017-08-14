@@ -21,7 +21,7 @@ This project contains an implementation of the AGL Programming Challenge as desc
     * To run with pet type argument: ``gradle run -PappArgs="['Dog']"``
 
 
-##Implementation overview
+## Implementation overview
 
 
 ### Libraries
@@ -35,7 +35,7 @@ This implementation uses Java 1.8 and some third party libraries as follows:
 In a production ready implementation I would use a framework like Spring as it provides dependency injection, Rest Templates, built JSON to Java mapping etc.
 
 
-###Code overview
+### Code overview
 This implementation consists of the following modules:
 * service
     * App.java - contains main class. It reads application parameters from a property file and creas the service.
