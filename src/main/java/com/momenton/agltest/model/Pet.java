@@ -3,9 +3,6 @@ package com.momenton.agltest.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-/**
- *
- */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Pet {
 

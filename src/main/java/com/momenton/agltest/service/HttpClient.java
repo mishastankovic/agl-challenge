@@ -16,7 +16,7 @@ public class HttpClient {
 
 
     /**
-     * Performs a HTTP GET request.
+     * A simple implementaiton of the HTTP GET request.
      *
      * @param url - remote service url
      * @return String containing server response

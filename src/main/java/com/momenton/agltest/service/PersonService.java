@@ -12,6 +12,10 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
+ * Client service that retrieves list of people from the remote REST service and performs the required processing.
+ * It uses {{@link com.momenton.agltest.service.HttpClient}} to make HTTP GET call to the remote service.
+ * It uses Jackson to convert JSON response to Java objects, then performs filtering, grouping and sorting using
+ * Java streams.
  *
  */
 public class PersonService {
@@ -91,7 +95,7 @@ public class PersonService {
     }
 
     /**
-     * Prints map of pets by owner gender
+     * Prints map of pets by owner gender into a String.
      *
      * @param map - Map with gender as key and list of pets as value
      * @return String containing printed list of pets

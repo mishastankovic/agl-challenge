@@ -12,7 +12,15 @@ import java.util.Properties;
 import java.util.logging.Logger;
 
 /**
- * Created by misha on 13/08/2017.
+ * Application class that contains main.
+ * One way to run this application is by using gralde command
+ * <pre>
+ *     gradle run
+ * </pre>
+ * It also alows applicaiton arguments to be passed as follows:
+ * <pre>
+ *     gradle run -PappArgs="['Dog']"
+ * </pre>
  */
 public class App {
 
@@ -33,6 +41,7 @@ public class App {
     }
 
     /**
+     * Prings the result from the service call to the terminal.
      *
      * @param petType
      */
@@ -43,6 +52,10 @@ public class App {
     }
 
 
+    /**
+     *
+     * @param args - args[0] - petType, optional, defaults to 'Cat'
+     */
     public static void main(String[] args) {
         String petType = args != null && args.length > 0 ? args[0] : DEFAULT_PET_TYPE;
         try {

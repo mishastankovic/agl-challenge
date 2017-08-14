@@ -25,8 +25,8 @@ This implementation consists of the following modules:
     * PersonService.java - Calls REST service using HttpClient and performs filterting, grouping, sorting and printing.
     * HttpClient - A basic HTTP GET implementation using HttpUrlConnection.
 * model
-    * Person
-    * Pet
+    * Person - - could have used Enum for gender, but for simplicity decided to use String
+    * Pet - could have used Enum for pet type, but for simplicity decided to use String
 * unit tests
     * HttpClientUnitTest
     * PersonServiceUnitTest
