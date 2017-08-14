@@ -4,23 +4,6 @@ AGL Programming Challenge
 
 This project contains an implementation of the AGL Programming Challenge as described [here](http://agl-developer-test.azurewebsites.net/).
 
-
-
-## Setting up the project
-
-* Install JDK 8
-* Install Gradle version 3.0 or above
-* Checkout the project from GitHub
-    * ```` git clone <repo url> ````
-* Build the project
-    * ````gradle clean build````
-* Run tests
-    * ```` gradle test ````
-* Run application
-    * ```` gradle run ````
-    * To run with pet type argument: ``gradle run -PappArgs="['Dog']"``
-
-
 ## Implementation overview
 
 
@@ -50,4 +33,19 @@ This implementation consists of the following modules:
 * integration tests
     * HttpClientIntegrationTest
     * PersonServiceIntegrationTest
+
+## Setting up the project
+
+* Install JDK 8
+* Install Gradle version 3.0 or above
+* Checkout the project from GitHub
+    * ```` git clone <repo url> ````
+* Build the project
+    * ````gradle clean build````
+* Run tests
+    * ```` gradle test ````
+* Run application
+    * ```` gradle run ````
+    * To run with pet type argument: ``gradle run -PappArgs="['Dog']"``
+
 
